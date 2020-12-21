@@ -95,3 +95,6 @@ body{
 main{
     background-color: white;
 }
+div.right{
+    display: none;
+}
