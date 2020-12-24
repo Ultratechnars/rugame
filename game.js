@@ -13,7 +13,7 @@ let words = [
     ["неме", "ц", "кий"],
     ["ру", "сс", "кий"],
     ["со", "лн", "це"],
-    ["инт", "е", "ллегент"]
+    ["инт", "е", "ллигент"]
 ];
 let tru = 0;
 let fal=0;
@@ -23,27 +23,30 @@ let histor = document.getElementById('histor');
 let temp;
 function choice(){
     let i = Math.round(Math.random() * (words.length - 1));
-    return words.slice(i, i);
+    let z = words[i];
+    words.splice(i, 1);
+    return z;
 }
 function newtask() {
     --n;
     temp = choice();
+    alert(temp);
     primer.innerHTML = temp[0] + "<input type='text' id='suvk'>" + temp[2]; /*input*/
     document.getElementById("suvk").focus();
     document.getElementById('suvk').onchange = nexttask;
 }
 function nexttask() {
-    var inp = document.getElementById('suvk');
-    var result;
-    if( inp.value == temp[1]){
+    let inp = document.getElementById('suvk');
+    let result;
+    if( inp.value === temp[1]){
         result = ". Верно." ;
         tru=tru+1
     }
     else{
-        result= ". Неверно, правильный ответ " + temp[0] + temp[1] + temp[2];
+        result= ". Неверно, правильный ответ " + temp[0] + temp[1].toUpperCase() + temp[2];
         fal=fal+1
     }
-    histor.innerHTML = temp[0] + temp[1] + temp[2] + "\n" + histor.innerHTML;
+    histor.innerHTML = temp[0] + inp.value.toUpperCase() + temp[2] + result + "\n" + histor.innerHTML;
     if(n > 0){
         newtask();
     }
@@ -57,7 +60,5 @@ function nexttask() {
     vernie.innerHTML = tru;
     document.getElementById("nevern");
     nevern.innerHTML = fal;
-    document.getElementById("left");
-    left.innerHTML = n;
 }
 newtask();
