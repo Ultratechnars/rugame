@@ -30,7 +30,6 @@ function choice(){
 function newtask() {
     --n;
     temp = choice();
-    alert(temp);
     primer.innerHTML = temp[0] + "<input type='text' id='suvk'>" + temp[2]; /*input*/
     document.getElementById("suvk").focus();
     document.getElementById('suvk').onchange = nexttask;
